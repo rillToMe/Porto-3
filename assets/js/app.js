@@ -112,6 +112,16 @@ window.addEventListener("scroll", () => {
   `0 0 ${6 + scrolled / 5}px rgba(0,255,240,${0.3 + scrolled / 200})`;
 });
 
+async function sendContact(data) {
+  const PROXY_URL = "/api/proxy";
+  const res = await fetch(PROXY_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  return res.ok ? { status: "success" } : { status: "error" };
+}
+window.sendContact = sendContact;
 
 
 (function(){
@@ -224,5 +234,6 @@ function showToast(msg, ms=2500){
     }
   });
 })();
+
 
 
