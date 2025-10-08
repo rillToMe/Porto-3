@@ -1,5 +1,5 @@
 export default async function handler(req, res) {
-  const GAS_ADMIN_URL = "https://script.google.com/macros/s/AKfycbyzCxaT6LShSAwUMehlepRLvmbKgyyJsAHP0Eq-oHwYeIdBPGOEEjyx644sgr-TXb3J/exec";
+  const GAS_ADMIN_URL = "https://script.google.com/macros/s/AKfycbw3f8COdBPqEnh3yuU3us-_OYhW1Z0fQxGTS2vGWYB1oQRkykOnhS_Xbwp6XIHPQRed/exec";
   const ADMIN_KEY = process.env.ADMIN_KEY;
 
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -32,3 +32,4 @@ export default async function handler(req, res) {
     res.status(500).json({ status: "error", message: err.message });
   }
 }
+
