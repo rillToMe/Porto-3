@@ -3,11 +3,9 @@ export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-  if (req.method === "OPTIONS") {
-    return res.status(200).end();
-  }
+  if (req.method === "OPTIONS") return res.status(200).end();
 
-  const googleScriptUrl = "https://script.google.com/macros/s/AKfycbxCSIf8dpVvYXYoLgtFbHY7_M-3ngfDgPx3CQeq7KzxRqvYO81YJKXT2XX6RKiwknUF-w/exec";
+  const googleScriptUrl = "https://script.google.com/macros/s/AKfycbyk-6lKOXwaOU3ef0OGVJ8GkkYbXAPCiwZFlM-Yy7OAGkm5DO_b9r_-FSG6RVkI8ns_KA/exec";
 
   try {
     if (req.method === "POST") {
@@ -16,24 +14,17 @@ export default async function handler(req, res) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(req.body),
       });
-
-      const data = await response.text();
-      return res.status(200).json({ success: true, data });
+      const text = await response.text();
+      return res.status(200).send(text);
     }
-
     if (req.method === "GET") {
       const response = await fetch(googleScriptUrl);
-      const data = await response.text();
-      return res.status(200).send(data);
+      const text = await response.text();
+      return res.status(200).send(text);
     }
-
-    res.status(405).json({ success: false, message: "Method not allowed" });
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.toString() });
+    res.status(405).json({ message: "Method not allowed" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: err.message || "Proxy error" });
   }
 }
-
-
-
-
-
