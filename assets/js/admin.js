@@ -1,17 +1,71 @@
+const ADMIN_KEY = ""; // contoh: "ADITGANTENG123"
+
+// helper: tambahkan ?key=.. untuk GET
+function withKey(url) {
+  if (!ADMIN_KEY) return url;
+  const u = new URL(url, location.origin);
+  u.searchParams.set("key", ADMIN_KEY);
+  return u.toString();
+}
+
+// helper: fetch aman (no-cache, parse text→json)
+async function jfetch(url, opts = {}) {
+  const isPost = (opts.method || "GET").toUpperCase() !== "GET";
+  const headers = { "Content-Type": "application/json", ...(opts.headers || {}) };
+  let body = opts.body;
+
+  // sisipkan key ke body POST jika ADMIN_KEY tersedia
+  if (isPost && ADMIN_KEY) {
+    try {
+      const obj = typeof body === "string" ? JSON.parse(body || "{}") : (body || {});
+      obj.key = ADMIN_KEY;
+      body = JSON.stringify(obj);
+    } catch {
+      body = body; // kalau bukan JSON biarkan (tapi semua request kita JSON)
+    }
+  }
+
+  const res = await fetch(isPost ? url : withKey(url), {
+    ...opts,
+    headers,
+    body,
+    cache: "no-store"
+  });
+
+  const text = await res.text();
+  let data;
+  try { data = JSON.parse(text); }
+  catch {
+    data = { status: "error", message: "Bukan JSON", raw: text, http: res.status };
+  }
+  return data;
+}
+
+// === API wrapper (gunakan jfetch di bawah) ===
 const API = {
-  async readAll(){ const r=await fetch('/api/admin?action=readAll'); return r.json(); },
-  async read(col){ const r=await fetch(`/api/admin?action=read&collection=${col}`); return r.json(); },
-  async upsert(collection, data){ 
-    const r=await fetch('/api/admin', {method:'POST',headers:{'Content-Type':'application/json'}, body: JSON.stringify({action:'upsert', collection, data})});
-    return r.json();
+  async readAll() {
+    return jfetch('/api/admin?action=readAll');                // GET + ?key=
   },
-  async del(collection, id){
-    const r=await fetch('/api/admin', {method:'POST',headers:{'Content-Type':'application/json'}, body: JSON.stringify({action:'delete', collection, id})});
-    return r.json();
+  async read(col) {
+    return jfetch(`/api/admin?action=read&collection=${encodeURIComponent(col)}`); // GET + ?key=
   },
-  async uploadBase64(filename, base64){
-    const r=await fetch('/api/admin', {method:'POST',headers:{'Content-Type':'application/json'}, body: JSON.stringify({action:'uploadBase64', filename, base64})});
-    return r.json();
+  async upsert(collection, data) {
+    return jfetch('/api/admin', {
+      method: 'POST',
+      body: JSON.stringify({ action: 'upsert', collection, data })
+    });
+  },
+  async del(collection, id) {
+    return jfetch('/api/admin', {
+      method: 'POST',
+      body: JSON.stringify({ action: 'delete', collection, id })
+    });
+  },
+  async uploadBase64(filename, base64) {
+    return jfetch('/api/admin', {
+      method: 'POST',
+      body: JSON.stringify({ action: 'uploadBase64', filename, base64 })
+    });
   }
 };
 
@@ -179,4 +233,5 @@ function fileToBase64(file){
     r.readAsDataURL(file);
   });
 }
+
 
