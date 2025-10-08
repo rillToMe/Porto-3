@@ -5,7 +5,7 @@ export default async function handler(req, res) {
 
   if (req.method === "OPTIONS") return res.status(200).end();
 
-  const googleScriptUrl = "https://script.google.com/macros/s/AKfycbyk-6lKOXwaOU3ef0OGVJ8GkkYbXAPCiwZFlM-Yy7OAGkm5DO_b9r_-FSG6RVkI8ns_KA/exec";
+  const googleScriptUrl = "https://script.google.com/macros/s/AKfycbwecoZIyEkkkCflmtxdjdGtAeMbUeXhe5-8jPkHevDiCkAW8_5iCoEnXluebEinkj7_tw/exec";
 
   try {
     if (req.method === "POST") {
@@ -28,3 +28,4 @@ export default async function handler(req, res) {
     res.status(500).json({ message: err.message || "Proxy error" });
   }
 }
+
