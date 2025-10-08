@@ -1,77 +1,23 @@
-const ADMIN_KEY = ""; // contoh: "ADITGANTENG123"
-
-// helper: tambahkan ?key=.. untuk GET
-function withKey(url) {
-  if (!ADMIN_KEY) return url;
-  const u = new URL(url, location.origin);
-  u.searchParams.set("key", ADMIN_KEY);
-  return u.toString();
-}
-
-// helper: fetch aman (no-cache, parse text→json)
+// ===== API helper (client tidak perlu tau key) =====
 async function jfetch(url, opts = {}) {
-  const isPost = (opts.method || "GET").toUpperCase() !== "GET";
-  const headers = { "Content-Type": "application/json", ...(opts.headers || {}) };
-  let body = opts.body;
-
-  // sisipkan key ke body POST jika ADMIN_KEY tersedia
-  if (isPost && ADMIN_KEY) {
-    try {
-      const obj = typeof body === "string" ? JSON.parse(body || "{}") : (body || {});
-      obj.key = ADMIN_KEY;
-      body = JSON.stringify(obj);
-    } catch {
-      body = body; // kalau bukan JSON biarkan (tapi semua request kita JSON)
-    }
-  }
-
-  const res = await fetch(isPost ? url : withKey(url), {
-    ...opts,
-    headers,
-    body,
-    cache: "no-store"
-  });
-
+  const res  = await fetch(url, { cache: 'no-store', ...opts, headers: { 'Content-Type': 'application/json', ...(opts.headers||{}) } });
   const text = await res.text();
-  let data;
-  try { data = JSON.parse(text); }
-  catch {
-    data = { status: "error", message: "Bukan JSON", raw: text, http: res.status };
-  }
-  return data;
+  try { return JSON.parse(text); }
+  catch { return { status:'error', message:'Bukan JSON', raw:text, http: res.status }; }
 }
 
-// === API wrapper (gunakan jfetch di bawah) ===
 const API = {
-  async readAll() {
-    return jfetch('/api/admin?action=readAll');                // GET + ?key=
-  },
-  async read(col) {
-    return jfetch(`/api/admin?action=read&collection=${encodeURIComponent(col)}`); // GET + ?key=
-  },
-  async upsert(collection, data) {
-    return jfetch('/api/admin', {
-      method: 'POST',
-      body: JSON.stringify({ action: 'upsert', collection, data })
-    });
-  },
-  async del(collection, id) {
-    return jfetch('/api/admin', {
-      method: 'POST',
-      body: JSON.stringify({ action: 'delete', collection, id })
-    });
-  },
-  async uploadBase64(filename, base64) {
-    return jfetch('/api/admin', {
-      method: 'POST',
-      body: JSON.stringify({ action: 'uploadBase64', filename, base64 })
-    });
-  }
+  async readAll(){ return jfetch('/api/admin?action=readAll'); },
+  async read(col){ return jfetch(`/api/admin?action=read&collection=${encodeURIComponent(col)}`); },
+  async upsert(collection, data){ return jfetch('/api/admin', { method:'POST', body: JSON.stringify({ action:'upsert', collection, data }) }); },
+  async del(collection, id){ return jfetch('/api/admin', { method:'POST', body: JSON.stringify({ action:'delete', collection, id }) }); },
+  async uploadBase64(filename, base64){ return jfetch('/api/admin', { method:'POST', body: JSON.stringify({ action:'uploadBase64', filename, base64 }) }); },
 };
 
+// ===== Dom refs =====
 const gate = document.getElementById('gate');
 const app  = document.getElementById('app');
-const keyInput = document.getElementById('key');
+const keyInput = document.getElementById('key');     // hanya UX gating
 const loginBtn = document.getElementById('login');
 const logoutBtn = document.getElementById('logout');
 const colSel = document.getElementById('collection');
@@ -81,40 +27,35 @@ const listEl = document.getElementById('list');
 const formEl = document.getElementById('form');
 
 function ls(k,v){ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }
-function toast(t){ alert(t); } // ganti pakai toastmu sendiri kalau mau
+function toast(t){ alert(t); }
 
-// Gating UI (client-side doang biar nyaman). Server tetap cek API KEY di proxy → GAS.
+// ===== Client-side gate (UX saja) =====
 (function initGate(){
   if (ls('admin_ok')==='1') { gate.style.display='none'; app.style.display='block'; load(); }
-  loginBtn.onclick = async()=>{
-    if (!keyInput.value.trim()) return toast('Isi admin key');
-    // probe: panggil readAll (akan gagal kalau key server salah, tapi client gating ini cuma UX)
-    ls('admin_ok','1'); gate.style.display='none'; app.style.display='block'; load();
+  loginBtn.onclick = async ()=>{
+    if (!keyInput.value.trim()) return toast('Isi admin key (hanya untuk masuk UI)');
+    ls('admin_ok','1');
+    gate.style.display='none'; app.style.display='block';
+    load();
   };
   logoutBtn.onclick = ()=>{ localStorage.removeItem('admin_ok'); location.reload(); };
 })();
 
+// ===== Load & render =====
 async function load(){
   const col = colSel.value;
   formEl.style.display='none'; formEl.innerHTML='';
   listEl.innerHTML='Loading...';
 
-  try {
-    const r = await API.read(col);
-    console.log('READ RESP:', r);            
-    if (!r || r.status !== 'success') {
-      listEl.innerHTML = `Gagal memuat.<br><small>${(r && (r.message||JSON.stringify(r))) || 'no response'}</small>`;
-      return;
-    }
-
-    if (col==='profile') renderProfile(r.data);
-    else renderTable(col, r.data);
-  } catch (err) {
-    console.error(err);
-    listEl.innerHTML = `Gagal memuat.<br><small>${err.message}</small>`;
+  const r = await API.read(col);
+  console.log('READ RESP:', r);
+  if (!r || r.status !== 'success') {
+    listEl.innerHTML = `Gagal memuat.<br><small>${(r && (r.message||JSON.stringify(r))) || 'no response'}</small>`;
+    return;
   }
+  if (col==='profile') renderProfile(r.data);
+  else renderTable(col, r.data);
 }
-
 
 function renderProfile(d){
   const p = d[0] || {};
@@ -134,23 +75,23 @@ function renderProfile(d){
     const b64 = await fileToBase64(f);
     const up = await API.uploadBase64(`avatar_${Date.now()}.jpg`, b64.split(',')[1]);
     if (up.status==='success'){ document.getElementById('p_avatar').value = up.file.url; toast('Upload OK'); }
-    else toast('Upload gagal');
+    else toast('Upload gagal: ' + (up.message||''));
   };
   document.getElementById('p_save').onclick = async()=>{
     const data = {
-      id: 'profile', // kunci tetap
+      id: 'profile',
       name:  document.getElementById('p_name').value,
       title: document.getElementById('p_title').value,
       bio:   document.getElementById('p_bio').value,
       avatarUrl: document.getElementById('p_avatar').value
     };
     const r = await API.upsert('profile', data);
-    toast(r.status==='success' ? 'Tersimpan' : 'Gagal simpan');
+    toast(r.status==='success' ? 'Tersimpan' : ('Gagal simpan: ' + (r.message||'')));
   };
 }
 
 function renderTable(col, items){
-  const cols = Object.keys(items[0]||{id:'', title:''});
+  const cols = Object.keys(items[0] || { id:'', title:'' });
   const head = cols.map(h=>`<th>${h}</th>`).join('') + '<th>Aksi</th>';
   const rows = items.map(it=>{
     const tds = cols.map(c=>`<td>${safe(it[c])}</td>`).join('');
@@ -180,22 +121,22 @@ window.edit = (col, id)=>{
     const b64 = await fileToBase64(f);
     const up = await API.uploadBase64(`${col}_${id}_${Date.now()}.jpg`, b64.split(',')[1]);
     if (up.status==='success'){ document.getElementById('f_value').value = up.file.url; toast('Upload OK'); }
-    else toast('Upload gagal');
+    else toast('Upload gagal: ' + (up.message||'')); 
   };
   document.getElementById('f_save').onclick = async()=>{
     const field = document.getElementById('f_field').value.trim();
     const value = document.getElementById('f_value').value.trim();
     if(!field) return toast('Isi field');
     const r = await API.upsert(col, { id, [field]: value });
-    toast(r.status==='success' ? 'Tersimpan' : 'Gagal simpan');
+    toast(r.status==='success' ? 'Tersimpan' : ('Gagal simpan: ' + (r.message||'')));
     load();
   };
 };
 
-window.removeItem = async(col,id)=>{
+window.removeItem = async (col,id)=>{
   if(!confirm('Hapus item?')) return;
   const r = await API.del(col, id);
-  toast(r.status==='success' ? 'Terhapus' : 'Gagal hapus');
+  toast(r.status==='success' ? 'Terhapus' : ('Gagal hapus: ' + (r.message||'')));
   load();
 };
 
@@ -214,9 +155,8 @@ newBtn.onclick = ()=>{
     const title = document.getElementById('n_title').value.trim();
     const url = document.getElementById('n_url').value.trim();
     if(!id) return toast('Isi id');
-    // struktur fleksibel: minimal id + satu field penting
     const r = await API.upsert(col, { id, title, url });
-    toast(r.status==='success' ? 'Tersimpan' : 'Gagal');
+    toast(r.status==='success' ? 'Tersimpan' : ('Gagal: ' + (r.message||'')));
     load();
   };
 };
@@ -224,7 +164,7 @@ newBtn.onclick = ()=>{
 reloadBtn.onclick = load;
 colSel.onchange = load;
 
-function safe(s){ return String(s??'').replaceAll('"','&quot;').replaceAll('<','&lt;'); }
+function safe(s){ return String(s ?? '').replaceAll('"','&quot;').replaceAll('<','&lt;'); }
 function fileToBase64(file){
   return new Promise((resolve,reject)=>{
     const r = new FileReader();
@@ -233,5 +173,3 @@ function fileToBase64(file){
     r.readAsDataURL(file);
   });
 }
-
-
