@@ -12,8 +12,8 @@ export default async function handler(req, res) {
     const isPost = req.method === "POST";
     const url = new URL(GAS_ADMIN_URL);
     if (!isPost) {
-      // forward query for read
       Object.entries(req.query || {}).forEach(([k,v]) => url.searchParams.set(k, v));
+      url.searchParams.set("key", ADMIN_KEY || "");
     }
 
     const upstream = await fetch(url.toString(), {
@@ -22,7 +22,7 @@ export default async function handler(req, res) {
         "Content-Type": isPost ? "application/json" : undefined,
         "x-api-key": ADMIN_KEY
       },
-      body: isPost ? JSON.stringify(req.body) : undefined,
+      body: isPost ? JSON.stringify({ ...(req.body||{}), key: ADMIN_KEY || "" }) : undefined,
     });
 
     const text = await upstream.text();
@@ -32,6 +32,7 @@ export default async function handler(req, res) {
     res.status(500).json({ status: "error", message: err.message });
   }
 }
+
 
 
 
