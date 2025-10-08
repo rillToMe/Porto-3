@@ -1,35 +1,39 @@
-const GAS_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxCSIf8dpVvYXYoLgtFbHY7_M-3ngfDgPx3CQeq7KzxRqvYO81YJKXT2XX6RKiwknUF-w/exec";
+export default async function handler(req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
-async function sendContact(payload) {
-  if (!payload?.nama || !payload?.email || !payload?.pesan) {
-    return { status: "error", message: "Data tidak lengkap." };
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
   }
 
+  const googleScriptUrl = "https://script.google.com/macros/s/AKfycbxCSIf8dpVvYXYoLgtFbHY7_M-3ngfDgPx3CQeq7KzxRqvYO81YJKXT2XX6RKiwknUF-w/exec";
+
   try {
-    const res = await fetch(GAS_WEBAPP_URL, {
-      method: "POST",
-      body: JSON.stringify(payload),
-    });
+    if (req.method === "POST") {
+      const response = await fetch(googleScriptUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(req.body),
+      });
 
-    const text = await res.text();      
-    let json;
-    try { json = JSON.parse(text); }   
-    catch { json = { status: res.ok ? "success" : "error", message: text || "Unknown response" }; }
+      const data = await response.text();
+      return res.status(200).json({ success: true, data });
+    }
 
-    return json;
-  } catch (err) {
-    return { status: "error", message: err.message || "Network error" };
+    if (req.method === "GET") {
+      const response = await fetch(googleScriptUrl);
+      const data = await response.text();
+      return res.status(200).send(data);
+    }
+
+    res.status(405).json({ success: false, message: "Method not allowed" });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.toString() });
   }
 }
 
-async function pingGAS() {
-  try {
-    const r = await fetch(GAS_WEBAPP_URL, { method: "GET", cache: "no-store" });
-    return await r.text();
-  } catch (e) {
-    return "ERR: " + e.message;
-  }
-}
 
-window.sendContact = sendContact;
-window.pingGAS = pingGAS;
+
+
+
