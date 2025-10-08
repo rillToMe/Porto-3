@@ -44,12 +44,23 @@ async function load(){
   const col = colSel.value;
   formEl.style.display='none'; formEl.innerHTML='';
   listEl.innerHTML='Loading...';
-  const r = await API.read(col);
-  if (r.status!=='success'){ listEl.innerHTML = 'Gagal memuat.'; return; }
 
-  if (col==='profile') renderProfile(r.data);
-  else renderTable(col, r.data);
+  try {
+    const r = await API.read(col);
+    console.log('READ RESP:', r);            
+    if (!r || r.status !== 'success') {
+      listEl.innerHTML = `Gagal memuat.<br><small>${(r && (r.message||JSON.stringify(r))) || 'no response'}</small>`;
+      return;
+    }
+
+    if (col==='profile') renderProfile(r.data);
+    else renderTable(col, r.data);
+  } catch (err) {
+    console.error(err);
+    listEl.innerHTML = `Gagal memuat.<br><small>${err.message}</small>`;
+  }
 }
+
 
 function renderProfile(d){
   const p = d[0] || {};
@@ -168,3 +179,4 @@ function fileToBase64(file){
     r.readAsDataURL(file);
   });
 }
+
