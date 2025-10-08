@@ -134,7 +134,6 @@ window.sendContact = async function (data) {
 };
 
 
-
 (function(){
   const els = document.querySelectorAll("[data-reveal]");
   if (!els.length) return;
@@ -245,7 +244,5 @@ function showToast(msg, ms=2500){
     }
   });
 })();
-
-
 
 

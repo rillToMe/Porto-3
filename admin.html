@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AetherStudio Admin</title>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <style>
+    body{max-width:1000px;margin:40px auto;padding:0 16px}
+    .row{display:flex;gap:12px;align-items:center}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    input,textarea,select,button{padding:10px;border-radius:8px;border:1px solid #1f2628;background:#0f1213;color:#e5e7eb}
+    table{width:100%;border-collapse:separate;border-spacing:0 8px}
+    th,td{padding:10px;border-bottom:1px solid #1f2628}
+    .card{border:1px solid #1f2628;border-radius:12px;padding:16px;background:#0b0f10}
+    .btn{background:var(--accent,#2EC4B6);border:none;color:#041316;cursor:pointer}
+    .danger{background:#ff5565;color:#fff}
+    .muted{opacity:.7}
+  </style>
+</head>
+<body>
+  <h1>Admin AetherStudio</h1>
+
+  <div id="gate" class="card">
+    <div class="row">
+      <input id="key" placeholder="Masukkan Admin Key" style="flex:1">
+      <button class="btn" id="login">Masuk</button>
+    </div>
+    <small class="muted">Admin key di-cek server side (Vercel proxy → GAS). Ini hanya gating UI.</small>
+  </div>
+
+  <div id="app" class="card" style="display:none">
+    <div class="row">
+      <select id="collection">
+        <option value="profile">profile</option>
+        <option value="socials">socials</option>
+        <option value="projects">projects</option>
+        <option value="certs">certs</option>
+        <option value="quotes">quotes</option>
+      </select>
+      <button class="btn" id="reload">Muat Data</button>
+      <button class="btn" id="new">Tambah Baru</button>
+      <button class="danger" id="logout" style="margin-left:auto">Keluar</button>
+    </div>
+
+    <div id="form" class="card" style="margin:16px 0; display:none"></div>
+    <div id="list" class="card"></div>
+  </div>
+
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>
