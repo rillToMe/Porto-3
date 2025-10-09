@@ -1,7 +1,7 @@
 # 🌌 Personal Portfolio
 
-[![Stars](https://img.shields.io/github/stars/rillToMe/Main-Portofolio?style=for-the-badge&color=2EC4B6)](https://github.com/rillToMe/aether-studio/stargazers)
-[![Forks](https://img.shields.io/github/forks/rillToMe/Main-Portofolio?style=for-the-badge&color=00bcd4)](https://github.com/rillToMe/aether-studio/network/members)
+[![Stars](https://img.shields.io/github/stars/rillToMe/Main-Portofolio?style=for-the-badge&color=2EC4B6)](https://github.com/rillToMe/Main-Portofolio/stargazers)
+[![Forks](https://img.shields.io/github/forks/rillToMe/Main-Portofolio?style=for-the-badge&color=00bcd4)](https://github.com/rillToMe/Main-Portofolio/network/members)
 [![License](https://img.shields.io/github/license/rillToMe/Main-Portofolio?style=for-the-badge&color=1de9b6)](./LICENSE)
 [![Deploy](https://img.shields.io/badge/deploy-vercel-000000?style=for-the-badge&logo=vercel)](https://ditdev.vercel.app)
 
