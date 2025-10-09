@@ -72,9 +72,9 @@ AetherStudio/
 │   ├── img/              # Images, logos, icons
 │   ├── js/               # JS scripts (app.js, bgm.js, stack.js)
 │   └── thumbs/           # Certificate preview thumbnails
-├── sertifikat/
-│   ├── index.html/
-├── index.html
+├── credentials/
+│   ├── badges.html/
+├── home.html
 └── README.md
 ```
 
