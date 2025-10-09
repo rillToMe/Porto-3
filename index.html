@@ -4,8 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+  <link rel="icon" type="image/x-icon" href="/assets/img/logo.png" />
   <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/bgm.css" />
+  <link rel="stylesheet" href="assets/css/tech-stack.css" />
+  <link rel="stylesheet" href="assets/css/ms-p.css" />
+  <link rel="stylesheet" href="assets/css/service.css">
 </head>
 <body>
     <div id="scroll-progress"></div>
@@ -33,9 +40,9 @@
         <p class="eyebrow">Hey, I'm <span class="accent">Rahmat Aditya</span></p>
         <h1 class="title">I'm a <span id="typing"></span></h1>
         <p class="desc">
-          Seorang developer yang passionate dalam menciptakan solusi digital inovatif.
-          Dengan pengalaman dalam web development dan design, saya siap membantu
-          mewujudkan ide Anda menjadi kenyataan.
+          A passionate Game Developer with a knack for creating immersive experiences. 
+          Sometimes I dive into 3D modeling with Blender, and in my free time, 
+          I enjoy experimenting with AI and exploring frontend design just for fun.
         </p>
         <div class="btns">
         <a class="btn btn-primary" href="#projects"><i class="fa-solid fa-briefcase"></i> View Project</a>
@@ -91,7 +98,7 @@
 
   <section id="about" class="section">
     <div class="container">
-      <h2 class="section-title">Tentang <span class="accent">Saya</span></h2>
+      <h2 class="section-title">About <span class="accent">Me</span></h2>
       <div class="about-grid">
         <div class="about-photo card glow">
           <img src="assets/img/pp.jpeg" alt="About"/>
@@ -99,77 +106,107 @@
         <div class="about-text">
           <h3>Hello, I'm Adit</h3>
           <p>
-            Saya adalah developer & designer yang fokus pada pengalaman pengguna
-            dan visual yang rapi. Saya suka memadukan estetika dengan performa
-            untuk menghasilkan produk yang efektif.
+            I’m a Game Developer who loves turning imagination into playable and interactive experiences. 
+            I occasionally dive into 3D art with Blender. 
+            In my spare time, I like experimenting with AI and 
+            exploring frontend design to expand my creative scope.
           </p>
           <blockquote class="quote">
             <span id="about-quote-text"></span><span class="q-cursor" aria-hidden="true">|</span>
           </blockquote>
           <div class="quote-author" id="about-quote-author">-</div>
           <div class="btns">
-            <a class="btn btn-ghost" href="assets/certs/cv/cv.pdf" download="CV_Rahmat_Aditya.pdf">Unduh CV</a>
-            <a class="btn btn-primary" href="#projects">Lihat Proyek</a>
+            <a class="btn btn-ghost" href="assets/certs/cv/cv.pdf" download="CV_Rahmat_Aditya.pdf">Download CV</a>
+            <a class="btn btn-primary" href="#projects">View Project</a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="services" class="section">
+  <section id="tech" class="tech-stack">
+    <h2><i class="fa-solid fa-laptop-code"></i> Tech Stack</h2>
+    <p class="desc">
+      A collection of tools and technologies 
+      I use most often for game prototyping, web development, and AI experimentation, 
+      covering everything from exploration and building to deployment and maintenance.
+    </p>
+    <div id="stackGrid" class="stack-grid"></div>
+  </section>
+
+  <section id="stats" class="stats-line">
+    <div class="stat-item">
+      <span class="num" id="stat-projects" data-suffix="+">0</span>
+      <span class="label">Projects</span>
+    </div>
+
+    <div class="stat-item">
+      <span class="num" id="stat-months" data-suffix="+">0</span>
+      <span class="label">Months Studying</span>
+    </div>
+
+    <div class="stat-item">
+      <span class="num" id="stat-exp" data-suffix="+">0</span>
+      <span class="label">Experiments Done</span>
+    </div>
+  </section>
+
+
+
+  <section id="service" class="section">
     <div class="container">
-      <h2 class="section-title">Service</h2>
-      <div class="cards">
+      <h2 class="section-title">Services</h2>
 
-        <article class="card hover-glow">
-          <h3><i class="fa-solid fa-code"></i> Web Developer</h3>
-          <p>Membangun website modern, cepat, dan responsif.</p>
-          <a class="btn tiny btn-primary" href="#contact">Order Jasa</a>
+      <div class="grid-3 service-grid">
+        <!-- Game Dev -->
+        <article class="svc-card">
+          <div class="svc-ico"><i class="fa-solid fa-gamepad"></i></div>
+          <h3 class="svc-title">Game Dev</h3>
+          <p class="svc-desc">
+            Prototyping & gameplay loops in <b>Unity</b>, 
+            simple systems (UI, input, FX), 3D art with <b>Blender</b>, 
+            up to building demo-ready projects.
+          </p>
+          <a href="#contact" class="btn">Discuss</a>
         </article>
 
-        <article class="card hover-glow">
-          <h3><i class="fa-solid fa-mobile-screen"></i> Mobile Developer</h3>
-          <p>Aplikasi hybrid ringan dengan UI yang nyaman.</p>
-          <a class="btn tiny btn-primary" href="#contact">Order Jasa</a>
+        <article class="svc-card">
+          <div class="svc-ico"><i class="fa-solid fa-robot"></i></div>
+          <h3 class="svc-title">AI Experiments</h3>
+          <p class="svc-desc">
+            Small data/AI experiments: <b>Python + PyTorch/NumPy</b>, 
+            mini inference, toy models, and integration into app/web demos.
+          </p>
+          <a href="#contact" class="btn">Start an Experiment</a>
         </article>
 
-        <article class="card hover-glow">
-          <h3><i class="fa-solid fa-palette"></i> UI/UX Designer</h3>
-          <p>Desain yang clean, terstruktur, dan mudah digunakan.</p>
-          <a class="btn tiny btn-primary" href="#contact">Order Jasa</a>
-        </article>
-
-        <article class="card hover-glow">
-          <h3><i class="fa -solid fa-pen-nib"></i> Graphic Designer</h3>
-          <p>Identitas visual, poster, dan kebutuhan brand.</p>
-          <a class="btn tiny btn-primary" href="#contact">Order Jasa</a>
-        </article>
-
-        <article class="card hover-glow">
-          <h3><i class=" fa-solid fa-magnifying-glass"></i> SEO Specialist</h3>
-          <p>Optimasi on-page & technical untuk visibilitas tinggi.</p>
-          <a class="btn tiny btn-primary" href="#contact">Order Jasa</a>
-        </article>
-        
-        <article class="card hover-glow">
-          <h3><i class="fa-solid fa-feather"></i>  Content Writer</h3>
-          <p>Copy yang ringkas, jelas, dan konversi-oriented.</p>
-          <a class="btn tiny btn-primary" href="#contact">Order Jasa</a>
+        <article class="svc-card">
+          <div class="svc-ico">
+            <i class="fa-solid fa-code"></i>
+            <span class="badge">occasionally</span>
+          </div>
+          <h3 class="svc-title">Frontend</h3>
+          <p class="svc-desc">
+            Implement lightweight UI (HTML/CSS/JS), smooth animations, 
+            and minor optimizations <i>occasionally</i> when appropriate.
+          </p>
+          <a href="#contact" class="btn btn-ghost">Ask for Availability</a>
         </article>
       </div>
     </div>
   </section>
 
+
   <section id="projects" class="section">
     <div class="container">
-      <h2 class="section-title">Proyek</h2>
+      <h2 class="section-title">Project</h2>
       <div class="grid-3">
         <article class="project card hover-glow">
           <img src="assets/img/pp.jpeg" alt="Project 1"/>
           <div class="project-body">
             <h4>Project 1</h4>
             <p>Portfolio landing dengan animasi neon glow.</p>
-            <a class="btn tiny btn-ghost" href="#"><i class="fa-solid fa-up-right-from-square"></i> Lihat Detail</a>
+            <a class="btn tiny btn-ghost" href="#"><i class="fa-solid fa-up-right-from-square"></i> View Details</a>
           </div>
         </article>
         <article class="project card hover-glow">
@@ -177,7 +214,7 @@
           <div class="project-body">
             <h4>Project 2</h4>
             <p>Web dashboard ringan, fokus UX.</p>
-            <a class="btn tiny btn-ghost" href="#"><i class="fa-solid fa-up-right-from-square"></i> Lihat Detail</a>
+            <a class="btn tiny btn-ghost" href="#"><i class="fa-solid fa-up-right-from-square"></i> View Details</a>
           </div>
         </article>
         <article class="project card hover-glow">
@@ -185,7 +222,7 @@
           <div class="project-body">
             <h4>Project 3</h4>
             <p>Landing produk dengan CTA jelas.</p>
-            <a class="btn tiny btn-ghost" href="#"><i class="fa-solid fa-up-right-from-square"></i> Lihat Detail</a>
+            <a class="btn tiny btn-ghost" href="#"><i class="fa-solid fa-up-right-from-square"></i> View Details</a>
           </div>
         </article>
       </div>
@@ -194,7 +231,7 @@
 
   <section id="certs" class="section">
     <div class="container">
-      <h2 class="section-title">Sertifikat</h2>
+      <h2 class="section-title">Certificate</h2>
       <div class="grid-3">
 
         <div class="cert-card">
@@ -248,7 +285,7 @@
 
   <section id="contact" class="section">
     <div class="container">
-      <h2 class="section-title">Kontak Saya</h2>
+      <h2 class="section-title">Contact</h2>
       <div class="contact-grid">
         <ul class="contact-info">
           <li>Email: rahmataditya2817@gmail.com</li>
@@ -256,16 +293,19 @@
           <li>Alamat: Sumatera Barat, Indonesia</li>
         </ul>
         <form id="contact-form" class="contact-form" action="#" method="post">
-            <input type="text" id="nama" name="nama" placeholder="Nama Anda" required>
-            <input type="email" id="email" name="email" placeholder="Email Anda" required>
-            <textarea id="pesan" name="pesan" rows="6" placeholder="Pesan Anda" required></textarea>
+            <input type="text" id="nama" name="nama" placeholder="Your Name" required>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            <textarea id="pesan" name="pesan" rows="6" placeholder="Your Message" required></textarea>
             <button type="submit" class="btn btn-primary">
-                <i class="fa-solid fa-paper-plane"></i> Kirim Pesan
+                <i class="fa-solid fa-paper-plane"></i> Send
             </button>
         </form>
       </div>
     </div>
   </section>
+
+
+
 
   <footer class="footer">
     <div class="studio-badge">
@@ -279,7 +319,28 @@
   </footer>
 
   <div id="toast"></div>
-  <script src="api/proxy.js"></script>
+
+  <button id="backTop" aria-label="Kembali ke atas">
+    <svg viewBox="0 0 36 36"><path id="btp" d="M18 2 a16 16 0 1 1 0 32 a16 16 0 1 1 0 -32"/></svg>
+  </button>
+
+<button id="bgmToggle" class="bgm-toggle">
+  <svg class="eq" width="16" height="16" viewBox="0 0 12 12">
+    <rect x="1" y="4" width="2" height="4" rx="1"></rect>
+    <rect x="5" y="2" width="2" height="8" rx="1"></rect>
+    <rect x="9" y="3" width="2" height="6" rx="1"></rect>
+  </svg>
+  <span class="label">Lo-fi</span>
+</button>
+
+<audio id="bgm" src="assets/audio/lofi.mp3" preload="auto" playsinline loop></audio>
+
+
+
+  <script type="module" src="api/proxy.js"></script>
+  <script src="assets/js/bgm.js"></script>
+  <script src="assets/js/stack.js"></script>
+  <script src="assets/js/ms-p.js"></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>

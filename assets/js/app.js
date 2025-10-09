@@ -35,7 +35,7 @@ links.forEach(a => {
 });
 
 const typingEl = document.getElementById("typing");
-const words = ["Designer", "Developer", "GameDev", "WIBUU"];
+const words = ["GameDev", "Developer", "FrontEnd?", "AnimeLovers", "Manga Readers"];
 let wi = 0, ci = 0, deleting = false;
 
 function type() {
@@ -57,12 +57,20 @@ function type() {
 type();
 
 const QUOTES = [
-  { text: "“Dunia tidak akan melemah hanya karena kamu menangis”", author: "me" },
-  { text: "“Kode yang baik adalah kode yang mudah dihapus”", author: "Ruthless Refactorer" },
-  { text: "“Desain bukan sekadar terlihat indah; ia harus bekerja”", author: "Dieter Rams-ish" },
-  { text: "“Kecilkan skop, besarkan kualitas”", author: "Focus Mode" },
-  { text: "“Pelan itu halus, halus itu cepat”", author: "Craftsmanship" },
-  { text: "“Gw GK KARBIT”", author: "me" }
+  // { text: "“Dunia tidak akan melemah hanya karena kamu menangis”", author: "me" },
+  // { text: "“Kode yang baik adalah kode yang mudah dihapus”", author: "Ruthless Refactorer" },
+  // { text: "“Desain bukan sekadar terlihat indah; ia harus bekerja”", author: "Dieter Rams-ish" },
+  // { text: "“Kecilkan skop, besarkan kualitas”", author: "Focus Mode" },
+  // { text: "“Pelan itu halus, halus itu cepat”", author: "Craftsmanship" },
+  // { text: "“Gw GK KARBIT”", author: "me" },
+  { text: "Turning imagination into code", author: "?" },
+  { text: "Learn from the mistakes of others. You can’t live long enough to make them all yourself.", author:"Martin Fowler"},
+  { text: "All our dreams can come true, if we have the courage to pursue them", author:"Walt Disney" },
+  { text: "Success is not final; failure is not fatal: It is the courage to continue that counts.", author:"Winston S. Churchill"},
+  { text: "Good code is like a good story: it should be clear, concise, and engaging.", author:"Unknown"},
+  { text: "The only way to do great work is to love what you do.", author:"Steve Jobs"}
+
+
 ];
 
 (function aboutTyping(){
@@ -211,7 +219,7 @@ function showToast(msg, ms=2500){
     const until = Number(localStorage.getItem(LS_KEY) || 0);
     const left = until - Date.now();
     if (left > 0) {
-      showToast?.(`⏳ Tunggu ${Math.ceil(left / 1000)}s sebelum kirim lagi`);
+      showToast?.(`⏳ Wait ${Math.ceil(left / 1000)}s before sending again`);
       return;
     }
 
@@ -219,7 +227,7 @@ function showToast(msg, ms=2500){
     const email = form.querySelector("#email")?.value.trim();
     const pesan = form.querySelector("#pesan")?.value.trim();
     if (!nama || !email || !pesan) {
-      showToast?.("Lengkapi semua field dulu ya 🙏");
+      showToast?.("Please complete all fields 🙏");
       return;
     }
 
@@ -230,10 +238,10 @@ function showToast(msg, ms=2500){
     try {
       const res = await window.sendContact({ nama, email, pesan });
       if (res.status === "success") {
-        showToast?.("✨ Pesan terkirim! Terima kasih.");
+        showToast?.("✨ Message sent! Thank you..");
         form.reset();
       } else {
-        showToast?.("❌ " + (res.message || "Gagal mengirim"));
+        showToast?.("❌ " + (res.message || "Failed to send"));
         clearCooldown();
       }
     } catch (err) {
@@ -246,3 +254,39 @@ function showToast(msg, ms=2500){
 })();
 
 
+
+(() => {
+  const btn = document.getElementById('backTop'); if(!btn) return;
+  const path = document.getElementById('btp');
+  const len = path.getTotalLength ? path.getTotalLength() : 100;
+  const onScroll = () => {
+    const h = document.documentElement;
+    const sc = h.scrollTop;
+    const max = h.scrollHeight - h.clientHeight;
+    const p = max > 0 ? sc / max : 0;
+    path.style.strokeDasharray = `${(1-p)*len} ${len}`;
+    btn.classList.toggle('show', sc > 200);
+  };
+  addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+  btn.onclick = () => window.scrollTo({top:0, behavior:'smooth'});
+})();
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.stack-item').forEach((el, i) => {
+  el.style.transitionDelay = `${i * 0}ms`;
+  observer.observe(el);
+});
+
+
+document.querySelectorAll('#certs .cert-card').forEach((card, i) => {
+  const delay = (i * 300) % 2000; 
+  card.style.setProperty('--delay', `${delay}ms`);
+});

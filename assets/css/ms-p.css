@@ -1,0 +1,40 @@
+.stats-line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(40px, 8vw, 120px);
+  margin: 60px 0;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  text-align: center;
+  font-weight: 800;
+  color: var(--accent, #2ec4b6);
+  text-shadow: 0 0 12px rgba(46,196,182,0.3);
+}
+
+.stat-item .num {
+  font-size: clamp(36px, 5vw, 64px);
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.stat-item .label {
+  font-size: clamp(20px, 3vw, 28px);
+  font-weight: 700;
+  color: #36b8d8;
+  letter-spacing: 0.3px;
+  vertical-align: middle;
+}
+
+.stat-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.stat-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
