@@ -63,15 +63,18 @@ Built with a **neon-dark aesthetic**, smooth animations, and elegant UI transiti
 
 ```bash
 AetherStudio/
+├── api/
+│   ├── proxy.js   
 ├── assets/
-│   ├── audio/            # Lo-fi background music
+│   ├── audio/
+│   ├── certs/               # Lo-fi background music
 │   ├── css/              # All style files
 │   ├── img/              # Images, logos, icons
 │   ├── js/               # JS scripts (app.js, bgm.js, stack.js)
 │   └── thumbs/           # Certificate preview thumbnails
+├── sertifikat/
+│   ├── index.html/
 ├── index.html
-├── about.html
-├── portfolio.html
 └── README.md
 ```
 
