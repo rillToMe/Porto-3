@@ -1,11 +1,11 @@
 {
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true },
-    { "source": "/credentials/", "destination": "/credentials", "permanent": true },
-    { "source": "/certs", "destination": "/credentials", "permanent": true },
-    { "source": "/sertifikat", "destination": "/credentials", "permanent": true }
+    { "source": "/home", "destination": "/", "permanent": true },
+    { "source": "/sertifikat", "destination": "/credentials", "permanent": true },
+    { "source": "/badges", "destination": "/credentials", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/credentials", "destination": "/sertifikat/index.html" }
+    { "source": "/credentials", "destination": "/credentials/index.html" }
   ]
 }
