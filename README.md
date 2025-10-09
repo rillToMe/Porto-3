@@ -81,8 +81,8 @@ AetherStudio/
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/rillToMe/aether-studio.git
-   cd aether-studio
+   git clone https://github.com/rillToMe/Main-Portofolio.git
+   cd Main-Portofolio
    ```
 
 2. **Run a Local Server**
@@ -141,5 +141,5 @@ feel free to use, modify, and distribute with proper attribution.
 
 ---
 
-> -“Build. Learn. Iterate. Evolve - that’s what Aether Studio stands for.”-  
+> “Build. Learn. Iterate. Evolve - that’s what Aether Studio stands for.”
 > - **Rahmat Aditya**
