@@ -169,3 +169,37 @@
   loadList();
 })();
 
+
+
+async function fetchComments({ tag='', limit=80 }={}){
+  const u = new URL('/api/proxy', location.origin);
+  u.searchParams.set('action','list');
+  if (tag)   u.searchParams.set('tag', tag);
+  if (limit) u.searchParams.set('limit', String(limit));
+
+  const ctrl = new AbortController();
+  const t = setTimeout(()=>ctrl.abort(), 8000);
+  try{
+    const r = await fetch(u.toString(), { signal: ctrl.signal });
+    clearTimeout(t);
+    const j = await r.json();
+    if (j.status!=='success') throw new Error(j.message||'Fail');
+    return j.data || [];
+  }catch(e){
+    clearTimeout(t);
+    console.warn('fallback comments (offline/cache)');
+    try { return JSON.parse(localStorage.getItem('comments_cache_v1')||'[]'); }
+    catch { return []; }
+  }
+}
+
+async function submitComment({name='', tag='', text=''}){
+  addBubbleToUI({name, tag, text});
+
+  fetch('/api/proxy', {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({ action:'submit', name, tag, text })
+  }).catch(()=>{  });
+}
+
