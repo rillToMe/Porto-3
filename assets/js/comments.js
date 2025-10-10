@@ -151,7 +151,7 @@
       const r = await fetch(API, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body) });
       const j = await r.json();
       if (j?.status === 'success') {
-        noteEl.textContent = 'Thanks! Your comment is pending review.';
+        noteEl.textContent = 'Thanks! .';
         textEl.value = '';
       } else {
         noteEl.textContent = j?.message || 'Failed to submit.';
@@ -160,7 +160,7 @@
       noteEl.textContent = 'Network error.';
     } finally {
       sendBtn.disabled = false;
-      setTimeout(()=> (noteEl.textContent = 'Comments are reviewed before appearing.'), 3000);
+      setTimeout(()=> (noteEl.textContent = 'Refresh this web page.'), 3000);
     }
   });
 
@@ -168,3 +168,4 @@
 
   loadList();
 })();
+
