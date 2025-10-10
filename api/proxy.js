@@ -1,5 +1,14 @@
 export default async function handler(req, res) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  const allowedOrigins = ["https://ditdev.vercel.app"];
+  const origin = req.headers.origin;
+
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+  } else {
+    res.status(403).json({ message: "Access denied" });
+    return;
+  }
+
   res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
@@ -17,11 +26,13 @@ export default async function handler(req, res) {
       const text = await response.text();
       return res.status(200).send(text);
     }
+
     if (req.method === "GET") {
       const response = await fetch(googleScriptUrl);
       const text = await response.text();
       return res.status(200).send(text);
     }
+
     res.status(405).json({ message: "Method not allowed" });
   } catch (err) {
     console.error(err);
