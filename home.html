@@ -316,56 +316,6 @@
     </div>
   </section>
 
-
-  <section id="shoutouts" class="section">
-    <div class="container">
-      <h2 class="section-title">What people say</h2>
-      <p class="section-subtitle">Floating curated comments - submit yours!</p>
-    </div>
-
-    <div class="cmdbar">
-      <label>
-        Tag
-        <select id="cmTagFilter">
-          <option>All</option>
-          <option>UX</option>
-          <option>Design</option>
-          <option>Build</option>
-          <option>AI</option>
-          <option>Game</option>
-          <option>Other</option>
-        </select>
-      </label>
-
-      <label>
-        Density
-        <input type="range" id="cmDensity" min="3" max="12" value="7">
-      </label>
-
-      <button id="cmPause" class="btn tiny">Pause</button>
-      <button id="cmShuffle" class="btn tiny btn-ghost">Shuffle</button>
-    </div>
-
-    <div id="commentStage" class="comment-stage" aria-live="polite"></div>
-
-    <form id="commentForm" class="comment-form" autocomplete="off" novalidate>
-      <div class="row">
-        <input name="name" id="cmName" maxlength="32" placeholder="Your name (optional)">
-        <select name="tag" id="cmTag">
-          <option>UX</option><option>Design</option><option>Build</option>
-          <option>AI</option><option>Game</option><option>Other</option>
-        </select>
-      </div>
-      <textarea name="text" id="cmText" rows="3" maxlength="240" placeholder="Write a short comment (5–240 chars)"></textarea>
-
-      <input type="text" name="hp" id="cmHp" style="position:absolute;left:-9999px;opacity:0" tabindex="-1" autocomplete="off">
-
-      <button type="submit" id="cmSend" class="btn">Send</button>
-      <small id="cmNote" class="note">Comments are reviewed before appearing.</small>
-    </form>
-  </section>
-
-
   <footer class="footer">
     <div class="studio-badge">
   <a href="https://aether-studio.vercel.app/" target="_blank" rel="noopener">
@@ -401,5 +351,6 @@
   <script src="assets/js/app.js"></script>
 </body>
 </html>
+
 
 
