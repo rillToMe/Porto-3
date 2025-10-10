@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="assets/css/tech-stack.css" />
   <link rel="stylesheet" href="assets/css/ms-p.css" />
   <link rel="stylesheet" href="assets/css/service.css">
+  <link rel="stylesheet" href="assets/css/comments.css">
 </head>
 <body>
     <div id="scroll-progress"></div>
@@ -158,6 +159,7 @@
       <h2 class="section-title">Services</h2>
 
       <div class="grid-3 service-grid">
+        <!-- Game Dev -->
         <article class="svc-card">
           <div class="svc-ico"><i class="fa-solid fa-gamepad"></i></div>
           <h3 class="svc-title">Game Dev</h3>
@@ -200,28 +202,40 @@
     <div class="container">
       <h2 class="section-title">Project</h2>
       <div class="grid-3">
+
         <article class="project card hover-glow">
-          <img src="assets/img/pp.jpeg" alt="Project 1"/>
+          <img src="assets/img/img-project/pro-1.png" alt="Project 1"/>
           <div class="project-body">
-            <h4>Project 1</h4>
+            <h4>CrypShare</h4>
             <p>Portfolio landing dengan animasi neon glow.</p>
-            <a class="btn tiny btn-ghost" href="#"><i class="fa-solid fa-up-right-from-square"></i> View Details</a>
+            <a class="btn tiny btn-ghost" href="https://github.com/rillToMe/CrypShare" target="_blank" rel="noopener" ><i class="fa-solid fa-up-right-from-square" ></i> View Details</a>
           </div>
         </article>
+
         <article class="project card hover-glow">
-          <img src="assets/img/pp.jpeg" alt="Project 2"/>
+          <img src="assets/img/img-project/pro-2.png" alt="Project 2"/>
           <div class="project-body">
-            <h4>Project 2</h4>
+            <h4>CrypShare - V2</h4>
             <p>Web dashboard ringan, fokus UX.</p>
-            <a class="btn tiny btn-ghost" href="#"><i class="fa-solid fa-up-right-from-square"></i> View Details</a>
+            <a class="btn tiny btn-ghost" href="https://github.com/rillToMe/CrypShare-V2" target="_blank" rel="noopener" ><i class="fa-solid fa-up-right-from-square"></i> View Details</a>
           </div>
         </article>
+
         <article class="project card hover-glow">
-          <img src="assets/img/pp.jpeg" alt="Project 3"/>
+          <img src="assets/img/img-project/pro-3.png" alt="Project 3"/>
           <div class="project-body">
-            <h4>Project 3</h4>
+            <h4>VerbsEnglish</h4>
             <p>Landing produk dengan CTA jelas.</p>
-            <a class="btn tiny btn-ghost" href="#"><i class="fa-solid fa-up-right-from-square"></i> View Details</a>
+            <a class="btn tiny btn-ghost" href="https://verbs-english-id.vercel.app" target="_blank" rel="noopener" ><i class="fa-solid fa-up-right-from-square"></i> View Details</a>
+          </div>
+        </article>
+
+        <article class="project card hover-glow">
+          <img src="assets/img/img-project/pro-4.png" alt="Project 4"/>
+          <div class="project-body">
+            <h4>Universal File Converter</h4>
+            <p>Landing produk dengan CTA jelas.</p>
+            <a class="btn tiny btn-ghost" href="https://github.com/rillToMe/universal-file-converter" target="_blank" rel="noopener" ><i class="fa-solid fa-up-right-from-square"></i> View Details</a>
           </div>
         </article>
       </div>
@@ -304,6 +318,53 @@
   </section>
 
 
+  <section id="shoutouts" class="section">
+    <div class="container">
+      <h2 class="section-title">What people say</h2>
+      <p class="section-subtitle">Floating curated comments — submit yours!</p>
+    </div>
+
+    <div class="cmdbar">
+      <label>
+        Tag
+        <select id="cmTagFilter">
+          <option>All</option>
+          <option>UX</option>
+          <option>Design</option>
+          <option>Build</option>
+          <option>AI</option>
+          <option>Game</option>
+          <option>Other</option>
+        </select>
+      </label>
+
+      <label>
+        Density
+        <input type="range" id="cmDensity" min="3" max="12" value="7">
+      </label>
+
+      <button id="cmPause" class="btn tiny">Pause</button>
+      <button id="cmShuffle" class="btn tiny btn-ghost">Shuffle</button>
+    </div>
+
+    <div id="commentStage" class="comment-stage" aria-live="polite"></div>
+
+    <form id="commentForm" class="comment-form" autocomplete="off" novalidate>
+      <div class="row">
+        <input name="name" id="cmName" maxlength="32" placeholder="Your name (optional)">
+        <select name="tag" id="cmTag">
+          <option>UX</option><option>Design</option><option>Build</option>
+          <option>AI</option><option>Game</option><option>Other</option>
+        </select>
+      </div>
+      <textarea name="text" id="cmText" rows="3" maxlength="240" placeholder="Write a short comment (5–240 chars)"></textarea>
+
+      <input type="text" name="hp" id="cmHp" style="position:absolute;left:-9999px;opacity:0" tabindex="-1" autocomplete="off">
+
+      <button type="submit" id="cmSend" class="btn">Send</button>
+      <small id="cmNote" class="note">Comments are reviewed before appearing.</small>
+    </form>
+  </section>
 
 
   <footer class="footer">
@@ -337,12 +398,11 @@
 
 
   <script type="module" src="api/proxy.js"></script>
+  <script type="module" src="api/comments.js"></script>
+  <script src="assets/js/comments.js"></script>
   <script src="assets/js/bgm.js"></script>
   <script src="assets/js/stack.js"></script>
   <script src="assets/js/ms-p.js"></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>
-
-
-

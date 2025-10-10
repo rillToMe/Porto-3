@@ -290,3 +290,87 @@ document.querySelectorAll('#certs .cert-card').forEach((card, i) => {
   const delay = (i * 300) % 2000; 
   card.style.setProperty('--delay', `${delay}ms`);
 });
+
+
+(() => {
+  const API_URL = 'PASTE_YOUR_GAS_WEBAPP_URL_HERE'; // <-- ganti dengan URL Web App GAS
+
+  const wrap = document.getElementById('ratingStars');
+  const avgEl = document.getElementById('rateAvg');
+  const cntEl = document.getElementById('rateCount');
+  const note  = document.getElementById('rateNote');
+  if (!wrap) return;
+
+  // simple uuid (random) untuk userId lokal
+  function uid() {
+    return (localStorage.getItem('rater_id')) ||
+      (localStorage.setItem('rater_id', crypto.randomUUID?.() || String(Math.random()).slice(2)), localStorage.getItem('rater_id'));
+  }
+
+  // state bintang
+  const stars = Array.from(wrap.querySelectorAll('.star'));
+  function highlight(val) {
+    stars.forEach(btn => {
+      const v = Number(btn.dataset.val);
+      btn.classList.toggle('active', v <= val);
+      btn.setAttribute('aria-checked', (v === val) ? 'true' : 'false');
+    });
+  }
+
+  // fetch awal (average + count)
+  async function fetchStats() {
+    try {
+      const r = await fetch(API_URL, { cache: 'no-store' });
+      const j = await r.json();
+      if (j?.status === 'success') {
+        avgEl.textContent = Number(j.avg || 0).toFixed(2);
+        cntEl.textContent = String(j.count || 0);
+      }
+    } catch (e) { /* diamkan */ }
+  }
+
+  // kirim rating
+  let busy = false;
+  async function send(val) {
+    if (busy) return;
+    busy = true;
+    const body = { rating: val, userId: uid() };
+    // Optimistic UI
+    highlight(val);
+    note.textContent = 'Thanks! Saving your rating…';
+
+    try {
+      const r = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      const j = await r.json();
+      if (j?.status === 'success') {
+        avgEl.textContent = Number(j.avg || 0).toFixed(2);
+        cntEl.textContent = String(j.count || 0);
+        note.textContent = 'Saved. You can rate again after a while.';
+      } else {
+        // rate limited atau error
+        note.textContent = j?.message || 'Failed to save rating.';
+      }
+    } catch (err) {
+      note.textContent = 'Network error. Your rating might not be saved.';
+    } finally {
+      busy = false;
+    }
+  }
+
+  // hover preview
+  stars.forEach(btn => {
+    btn.addEventListener('mouseenter', () => highlight(Number(btn.dataset.val)));
+    btn.addEventListener('mouseleave', () => highlight(0));
+    btn.addEventListener('click', () => send(Number(btn.dataset.val)));
+    // aksesibilitas keyboard
+    btn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); send(Number(btn.dataset.val)); }
+    });
+  });
+
+  fetchStats();
+})();
