@@ -10,3 +10,9 @@
     { "source": "/credentials/badges.html", "destination": "/credentials/badges", "permanent": true }
   ]
 }
+
+{
+  "type": "module"
+}
+
+
