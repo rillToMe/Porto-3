@@ -73,8 +73,11 @@ AetherStudio/
 │   ├── js/             # Scripts (app.js, bgm.js, etc.)
 │   └── thumbs/         # Certificate thumbnails
 ├── credentials/
-│   └── badges.html
+│   ├── badges.html
+│   └── project.html
 ├── home.html
+├── package.json        # Node.js configuration (little)
+├── vercel.json         # Routing & rewrite rules
 └── README.md
 ```
 
