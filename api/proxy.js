@@ -1,5 +1,5 @@
 export default async function handler(req, res) {
-  const allowedOrigins = ["https://ditdev.vercel.app", "https://ditdev-git-main-rills-projects-eaaf792b.vercel.app", "https://ditdev-jhazld1e8-rills-projects-eaaf792b.vercel.app"];
+  const allowedOrigins = ["https://ditdev.vercel.app"];
   const origin = req.headers.origin;
 
   if (allowedOrigins.includes(origin)) {
@@ -39,4 +39,3 @@ export default async function handler(req, res) {
     res.status(500).json({ message: err.message || "Proxy error" });
   }
 }
-

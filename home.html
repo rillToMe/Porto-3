@@ -22,9 +22,9 @@
       <div class="logo">Aether<span>Studio</span></div>
       <nav class="menu">
         <a href="#home" class="active"><i class="fa-solid fa-house"></i> Home</a>
-        <a href="#about"><i class="fa-solid fa-user"></i> About Me</a>
+        <a href="#about"><i class="fa-solid fa-user"></i> About</a>
         <a href="#services"><i class="fa-solid fa-briefcase"></i> Service</a>
-        <a href="#projects"><i class="fa-solid fa-layer-group"></i> Project</a>
+        <a href="#projects"><i class="fa-solid fa-layer-group"></i> Projects</a>
         <a href="#certs"><i class="fa-solid fa-award"></i> Certificate</a>
         <a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a>
         
@@ -158,7 +158,7 @@
       <h2 class="section-title">Services</h2>
 
       <div class="grid-3 service-grid">
-        <!-- Game Dev -->
+
         <article class="svc-card">
           <div class="svc-ico"><i class="fa-solid fa-gamepad"></i></div>
           <h3 class="svc-title">Game Dev</h3>
@@ -197,49 +197,84 @@
   </section>
 
 
-  <section id="projects" class="section">
-    <div class="container">
-      <h2 class="section-title">Project</h2>
-      <div class="grid-3">
+<section id="projects" class="section">
+  <div class="container">
+    <h2 class="section-title">Project</h2>
 
-        <article class="project card hover-glow">
-          <img src="assets/img/img-project/pro-1.png" alt="Project 1"/>
-          <div class="project-body">
-            <h4>CrypShare</h4>
-            <p>Portfolio landing dengan animasi neon glow.</p>
-            <a class="btn tiny btn-ghost" href="https://github.com/rillToMe/CrypShare" target="_blank" rel="noopener" ><i class="fa-solid fa-up-right-from-square" ></i> View Details</a>
-          </div>
-        </article>
+    <div class="grid-3">
 
-        <article class="project card hover-glow">
-          <img src="assets/img/img-project/pro-2.png" alt="Project 2"/>
-          <div class="project-body">
-            <h4>CrypShare - V2</h4>
-            <p>Web dashboard ringan, fokus UX.</p>
-            <a class="btn tiny btn-ghost" href="https://github.com/rillToMe/CrypShare-V2" target="_blank" rel="noopener" ><i class="fa-solid fa-up-right-from-square"></i> View Details</a>
-          </div>
-        </article>
+      <article class="project card hover-glow">
+        <img src="assets/img/img-project/pro-1.png" alt="Project 1"/>
+        <div class="project-body">
+          <h4>CrypShare</h4>
+          <p class="desc">CrypShare is a secure LAN file-sharing tool I made using Python and PowerShell, 
+            built to let users upload/download files over a local network via browser with HTTPS support (self-signed or mkcert). 
+            It includes features like password protection, QR-code access, automatic file watching & live UI refresh, 
+            and a slick neon-dark interface. This project shows my skills in secure networking, UI/web integration, 
+            and automation in system/tool development.</p>
+          <a class="btn tiny btn-ghost" href="https://github.com/rillToMe/CrypShare" target="_blank" rel="noopener">
+            <i class="fa-solid fa-up-right-from-square"></i> View Details
+          </a>
+        </div>
+      </article>
 
-        <article class="project card hover-glow">
-          <img src="assets/img/img-project/pro-3.png" alt="Project 3"/>
-          <div class="project-body">
-            <h4>VerbsEnglish</h4>
-            <p>Landing produk dengan CTA jelas.</p>
-            <a class="btn tiny btn-ghost" href="https://verbs-english-id.vercel.app" target="_blank" rel="noopener" ><i class="fa-solid fa-up-right-from-square"></i> View Details</a>
-          </div>
-        </article>
+      <article class="project card hover-glow">
+        <img src="assets/img/img-project/pro-2.png" alt="CrypShare V2 preview"/>
+        <div class="project-body">
+          <h4>CrypShare - V2</h4>
+          <p class="desc">CrypShare V2 is an upgraded local-network file sharing and streaming app I built using Python. 
+            It allows users to upload, download, and even stream videos (like anime or movies) directly through the browser 
+            without any external server. The system runs entirely on LAN, featuring password protection, QR-code access, 
+            and real-time file list updates. Designed for simplicity and privacy, CrypShare V2 delivers fast, 
+            seamless media access within a clean and responsive web interface - showcasing my skills in backend logic, 
+            file streaming, and full-stack web integration.</p>
+          <a class="btn tiny btn-ghost" href="https://github.com/rillToMe/CrypShare-V2" target="_blank" rel="noopener">
+            <i class="fa-solid fa-up-right-from-square"></i> View Details
+          </a>
+        </div>
+      </article>
 
-        <article class="project card hover-glow">
-          <img src="assets/img/img-project/pro-4.png" alt="Project 4"/>
-          <div class="project-body">
-            <h4>Universal File Converter</h4>
-            <p>Landing produk dengan CTA jelas.</p>
-            <a class="btn tiny btn-ghost" href="https://github.com/rillToMe/universal-file-converter" target="_blank" rel="noopener" ><i class="fa-solid fa-up-right-from-square"></i> View Details</a>
-          </div>
-        </article>
-      </div>
+      <article class="project card hover-glow">
+        <img src="assets/img/img-project/pro-3.png" alt="VerbsEnglish preview"/>
+        <div class="project-body">
+          <h4>VerbsEnglish</h4>
+          <p class="desc">VerbsEnglishID is a lightweight web app I built to help users translate and understand 
+            English verbs in Indonesian context. It features a structured verb database with quick lookup, clean UI, 
+            and simple logic for filtering and displaying verb forms. The project focuses on practicality and clarity, 
+            combining frontend and backend integration to deliver fast and accurate verb translations. 
+            It highlights my skills in building small-scale language tools, data handling, and user-friendly web interfaces.</p>
+          <a class="btn tiny btn-ghost" href="https://verbs-english-id.vercel.app" target="_blank" rel="noopener">
+            <i class="fa-solid fa-up-right-from-square"></i> View Details
+          </a>
+        </div>
+      </article>
+
+      <article class="project card hover-glow">
+        <img src="assets/img/img-project/pro-4.png" alt="Universal File Converter preview"/>
+        <div class="project-body">
+          <h4>Universal File Converter</h4>
+          <p class="desc">Universal File Converter is a Flask-based web app I built to convert images, audio, and video files 
+            into different formats directly in the browser. It supports batch uploads, real-time progress tracking, and automatic 
+            ZIP downloads for converted results. The backend handles file processing using FFmpeg, Pillow, and OpenCV, while the 
+            frontend is a clean, responsive interface built with HTML, CSS, and JavaScript. This project showcases my full-stack skills 
+            in multimedia processing, server-side automation, and interactive UI design.</p>
+          <a class="btn tiny btn-ghost" href="https://github.com/rillToMe/universal-file-converter" target="_blank" rel="noopener">
+            <i class="fa-solid fa-up-right-from-square"></i> View Details
+          </a>
+        </div>
+      </article>
+
     </div>
-  </section>
+
+    <div class="see-all-container">
+      <a href="credentials/project.html" class="see-all-btn">
+        <i class="fa-solid fa-layer-group"></i> See All Projects
+      </a>
+    </div>
+  </div>
+</section>
+
+
 
   <section id="certs" class="section">
     <div class="container">
@@ -316,16 +351,33 @@
     </div>
   </section>
 
-  <footer class="footer">
+
+  <footer class="footer"  class="footer compact">
     <div class="studio-badge">
-  <a href="https://aether-studio.vercel.app/" target="_blank" rel="noopener">
-    <i class="fa-solid fa-flask"></i> AetherStudio
-  </a>
-</div>
+      <a href="https://aether-studio.vercel.app/" target="_blank" rel="noopener">
+        <i class="fa-solid fa-flask"></i> AetherStudio
+      </a>
+    </div>
+
+    <div class="footer-quote">
+      “Build. Learn. Iterate. Evolve.”
+    </div>
+
+    <div class="footer-links">
+      <a href="#home"><i class="fa-solid fa-house"></i> Home</a>
+      <a href="#about"><i class="fa-solid fa-user"></i> About</a>
+      <a href="#projects"><i class="fa-solid fa-layer-group"></i> Projects</a>
+      <a href="#certs"><i class="fa-solid fa-award"></i> Certificate</a>
+      <a href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a>
+      <a href="https://github.com/rillToMe" target="_blank"><i class="fa-brands fa-github"></i></a>
+    </div>
+
     <div class="container">
       <p>&copy; <span id="year"></span> AetherStudio. All Rights Reserved.</p>
     </div>
   </footer>
+
+
 
   <div id="toast"></div>
 
@@ -333,24 +385,22 @@
     <svg viewBox="0 0 36 36"><path id="btp" d="M18 2 a16 16 0 1 1 0 32 a16 16 0 1 1 0 -32"/></svg>
   </button>
 
-<button id="bgmToggle" class="bgm-toggle">
-  <svg class="eq" width="16" height="16" viewBox="0 0 12 12">
-    <rect x="1" y="4" width="2" height="4" rx="1"></rect>
-    <rect x="5" y="2" width="2" height="8" rx="1"></rect>
-    <rect x="9" y="3" width="2" height="6" rx="1"></rect>
-  </svg>
-  <span class="label">Lo-fi</span>
-</button>
+  <button id="bgmToggle" class="bgm-toggle">
+    <svg class="eq" width="16" height="16" viewBox="0 0 12 12">
+      <rect x="1" y="4" width="2" height="4" rx="1"></rect>
+      <rect x="5" y="2" width="2" height="8" rx="1"></rect>
+      <rect x="9" y="3" width="2" height="6" rx="1"></rect>
+    </svg>
+    <span class="label">Lo-fi</span>
+  </button>
 
-<audio id="bgm" src="assets/audio/lofi.mp3" preload="auto" playsinline loop></audio>
+  <audio id="bgm" src="assets/audio/lofi.mp3" preload="auto" playsinline loop></audio>
 
   <script type="module" src="api/proxy.js"></script>
   <script src="assets/js/bgm.js"></script>
+  <script src="assets/js/project.js"></script>
   <script src="assets/js/stack.js"></script>
   <script src="assets/js/ms-p.js"></script>
   <script src="assets/js/app.js"></script>
 </body>
 </html>
-
-
-

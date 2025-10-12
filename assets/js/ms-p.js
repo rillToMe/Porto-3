@@ -1,6 +1,6 @@
 const STUDY_START = new Date('2024-08-28T00:00:00+07:00');
-const PROJECTS_COUNT = 11;
-const EXP_COUNT = 17;
+const PROJECTS_COUNT = 5;
+const EXP_COUNT = 11;
 
 function monthsSince(start, now = new Date()) {
   const y = now.getFullYear() - start.getFullYear();
