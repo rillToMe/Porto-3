@@ -14,26 +14,17 @@ export default async function handler(req, res) {
 
   if (req.method === "OPTIONS") return res.status(200).end();
 
-  const googleScriptUrl = "https://script.google.com/macros/s/AKfycbwecoZIyEkkkCflmtxdjdGtAeMbUeXhe5-8jPkHevDiCkAW8_5iCoEnXluebEinkj7_tw/exec";
+  const googleScriptUrl = process.env.GOOGLE_SCRIPT_URL;
 
   try {
-    if (req.method === "POST") {
-      const response = await fetch(googleScriptUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(req.body),
-      });
-      const text = await response.text();
-      return res.status(200).send(text);
-    }
-
-    if (req.method === "GET") {
-      const response = await fetch(googleScriptUrl);
-      const text = await response.text();
-      return res.status(200).send(text);
-    }
-
-    res.status(405).json({ message: "Method not allowed" });
+    const method = req.method;
+    const response = await fetch(googleScriptUrl, {
+      method,
+      headers: { "Content-Type": "application/json" },
+      body: method === "POST" ? JSON.stringify(req.body) : undefined,
+    });
+    const text = await response.text();
+    res.status(200).send(text);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: err.message || "Proxy error" });
