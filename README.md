@@ -1,159 +1,106 @@
-# 🌌 Personal Portfolio - Aether Studio
-
-[![Stars](https://img.shields.io/github/stars/rillToMe/Main-Portofolio?style=for-the-badge&color=2EC4B6)](https://github.com/rillToMe/Main-Portofolio/stargazers)
-[![Forks](https://img.shields.io/github/forks/rillToMe/Main-Portofolio?style=for-the-badge&color=00bcd4)](https://github.com/rillToMe/Main-Portofolio/network/members)
-[![License](https://img.shields.io/github/license/rillToMe/Main-Portofolio?style=for-the-badge&color=1de9b6)](./LICENSE)
-[![Deploy](https://img.shields.io/badge/deploy-vercel-000000?style=for-the-badge&logo=vercel)](https://ditdev.vercel.app)
-[![Performance](https://img.shields.io/badge/build-lightweight-success?style=for-the-badge&color=2EC4B6)](#)
+# 💮 Wife Shrine - Neon Waifu Gallery
+> *A random post-tooth-extraction project that somehow turned into a neon aesthetic gallery.*
 
 ---
 
-## ✨ Overview
-
-**Aether Studio** is a personal portfolio site created by **Rahmat Aditya (rillToMe)** -  
-a student and developer focused on **Game Development,AI experiments and creative technology**.  
-This website serves as a central hub for all of Adit’s projects, experiments, and personal milestones.
-
-Now rebuilt as a **lightweight & high-performance** web experience, balancing **speed, elegance, and clarity**.
+## 🦷 Backstory
+It started as a chill day after a tooth extraction.  
+Then came the thought: *“What if I make a waifu shrine but in dark neon style?”*  
+Now here we are - an over-engineered boredom project with animations, ambient glow, and logic way too complex for its purpose 
 
 ---
 
-## 🧠 Features
-
-### 🎨 Interface & UX
-- Neon-dark theme with soft azure glow.  
-- Responsive for all screen sizes (desktop, tablet, mobile).  
-- Smooth hover, fade, and scroll animations.  
-- Lightweight build: only vanilla HTML, CSS, and JS (no frameworks).
-
-### 🎧 Interactive Experience
-- **Lo-fi background music** toggle with soft fade-in and dynamic placement.  
-- Adaptive position: automatically moves above the Back-to-Top button when visible.  
-- Manual play control for maximum browser compatibility.
-
-### 💼 Sections
-- **About Me** - personal bio & core background.  
-- **Tech Stack** - showcases key technologies (Python, NumPy, PyTorch, Unity, Blender, etc).  
-- **Services** - focuses on:
-  - 🎮 *Game Development* - Unity / C# prototyping.
-  - 🤖 *AI Experiments* - Python, NumPy, PyTorch.
-  - 💻 *Frontend Development* - HTML/CSS/JS demos.
-- **Projects** - visual cards of active and finished work.  
-- **Certificates** - floating cards with subtle up-down animations.  
-- **Stats Section** - auto-updating info:
-  - `Months Studying` - auto-count from **Aug 28, 2024**.
-  - `Projects` - manual count in JS.
-  - `Experiments Done` - dynamically displayed.
+## 🌌 Features
+| Feature | Description |
+|----------|-------------|
+| 🎞️ **Hover Expand Animation** | Cards expand smoothly on hover, revealing full portraits and their unique aura. |
+| 🩶 **Ambient Glow** | Each card adapts its glow and text color based on the image’s dominant tones. |
+| 💤 **Idle Auto-Slide** | If you stay idle for 10 seconds, the gallery slides automatically. Move your mouse, and it stops. |
+| 💬 **Dynamic Quote System** | Every waifu comes with custom `data-quote`, `data-anime`, and `data-name` for modal display. |
+| 🪞 **Modal / Lightbox Detail** | Click a card to open the detailed modal: name, origin, and quote. |
+| ☀️ **Responsive Layout** | Works perfectly on desktop and mobile with smooth scroll-snap behavior. |
+| 🧠 **Hover Logic Fix** | Auto-slide no longer overlaps manual hover - finally stable. |
 
 ---
 
-## 🧩 Tech Stack
-
-| Category | Technologies |
-|-----------|---------------|
-| **Frontend** | HTML5, CSS3, JavaScript |
-| **Design & UI** | Neon Theme, Font Awesome Icons, Smooth CSS Animations |
-| **AI / ML** | Python, NumPy, PyTorch |
-| **Game Development** | Unity (C#), Blender |
-| **Deployment** | Vercel |
-| **Tools** | Visual Studio Code, Visual Studio, Git, GitHub |
+## 💻 Tech Stack
+- **HTML5 / CSS3 / Vanilla JavaScript**
+- Zero frameworks, zero dependencies - pure handcrafted boredom.
+- Color theme: **Aether Studio Neon Pastel** 🌈
 
 ---
 
-## 🏗️ Folder Structure
-
-```bash
-AetherStudio/
-├── api/
-│   └── proxy.js
+## 🗂️ Folder Structure
+```
+/
 ├── assets/
-│   ├── audio/          # Background music
-│   ├── css/            # Styles (style.css, bgm.css)
-│   ├── img/            # Images, icons, thumbnails
-│   ├── js/             # Scripts (app.js, bgm.js, etc.)
-│   └── thumbs/         # Certificate thumbnails
-├── credentials/
-│   ├── badges.html
-│   └── project.html
-├── home.html
-├── package.json        # Node.js configuration (little)
-├── vercel.json         # Routing & rewrite rules
-└── README.md
+│   ├── img/                # Waifu images / wallpapers
+│   ├── css/ 
+│       └── style.css       # Neon-dark theme
+│   └── js/
+│       └── app.js          # Interactive script + logic
+├── wife.html               # Main shrine page  
+├── vercel.json             # YTTA  
+└── README.md              
 ```
 
 ---
 
-## ⚙️ Setup & Local Run
+## 💞 Featured Characters
+| Name | Origin | Quote |
+|------|---------|--------|
+| **Changli** | *Wuthering Waves* | “A thread of fate, wrapped around your little finger.” |
+| **Itsuki Nakano** | *The Quintessential Quintuplets* | “I may be strict and stubborn, but a promise made over a meal is a promise I won’t break.” |
+| **The Herta** | *Honkai: Star Rail* | “I build puppets so I may distance myself-yet in their silence, I speak louder than existence.” |
+| *(more waifus soon...)* | | |
 
-1. **Clone the Repository**
+---
+
+## ⚙️ How to Run
+1. Clone this repo:
    ```bash
-   git clone https://github.com/rillToMe/Main-Portofolio.git
-   cd Main-Portofolio
+   git clone https://github.com/rillToMe/Wife-Shrine.git
+   cd Wife-Shrine
    ```
-
-2. **Run a Local Server**
-   You can use VS Code’s Live Server or:
-   ```bash
-   python -m http.server
-   ```
-   Then open: [http://127.0.0.1:8000](http://127.0.0.1:8000)
-
-3. **Edit Content**
-   - Update data in `index.html`, `about.html`, etc.  
-   - Replace `/assets/audio/lofi.mp3` if you want new background music.  
-   - Adjust project & certificate data in `/assets/js/app.js`.
+2. Open it locally:
+   - Just open `wife.html`, or  
+   - Use a local server (e.g. **VS Code Live Server**).
+3. Add a new waifu:
+   - Place image under `assets/img/`  
+   - Duplicate one of the `<a class="card">` blocks in `wife.html`  
+   - Fill in `data-bg`, `data-name`, `data-anime`, `data-quote`  
 
 ---
 
-## 💫 Highlighted Features
-- 🧮 **Auto Study Counter** - months since 28 Aug 2024.  
-- 🪶 **Floating Certificates** - infinite looping motion for certificate cards.  
-- 🎵 **Smart BGM Button** - floating, responsive, fade transition.  
-- 💨 **Lightweight Mode** - optimized, minimal requests for fast load.  
+## 🌺 Design & Aesthetics
+- Theme: **Neon dark with soft pink accent**
+- Font: *Poppins / UI Sans*
+- Vibe: futuristic late-night lounge meets anime shrine
+- Animations fully CSS-driven - no JS animation libs.
 
 ---
 
-## 🧹 Removed Features
-| Feature | Reason |
-|----------|---------|
-| Comment System | Removed to improve loading time and prevent server-side delay. |
-| Rating Widget | Removed to avoid spam and unnecessary backend complexity. |
-| Admin Dashboard (Beta) | Temporarily disabled to keep static build lightweight. |
+## 🧩 Dev Notes
+- Hover vs auto-slide conflict fully resolved.
+- Global CTA handler for “Click for details” added.
+- Particle effect removed (too distracting).
+- Modular CSS & JS for easy customization and new effects.
 
 ---
 
-## 📸 Preview
+## ☕ Personal Note
+> “Tooth extraction → lost sanity → pushed to GitHub.  
+> Sometimes, creativity hits when you least plan for it.”  
 
-| Section | Screenshot |
-|:--------|:-----------|
-| Tech Stack | ![Tech Stack](./assets/img/preview-techstack.png) |
-| Services | ![Services](./assets/img/preview-service.png) |
-| Certificates | ![Certificates](./assets/img/preview-certs.png) |
+- *rillToMe (Rahmat Aditya)*
 
 ---
 
-## 🌐 Deployment
-Deployed with **[Vercel](https://vercel.com)** for automatic updates.  
-Every push to `main` instantly rebuilds and redeploys the live site.  
-
-🔗 **Live Site:** [https://ditdev.vercel.app/](https://ditdev.vercel.app/)
+## 🧠 License
+Made purely for experimentation, design practice, and waifu appreciation.  
+Feel free to remix, learn, or modify - just don’t claim you were sane while reading the code.
 
 ---
 
-## 📄 License
-This project is licensed under the **MIT License**   
-feel free to fork, learn, and remix with proper attribution.
-
----
-
-## 👤 Author
-**Rahmat Aditya (rillToMe)**  
-💼 SMKN 4 Payakumbuh - XI PPLG 2  
-🌐 [Portfolio Live](https://ditdev.vercel.app)  
-🐙 [GitHub](https://github.com/rillToMe)  
-📧 [rahmataditya.dev@gmail.com](mailto:rahmataditya.dev@gmail.com)
-
----
-
-> “Build. Learn. Iterate. Evolve - that’s what Aether Studio stands for.”  
-> - **Rahmat Aditya**
+### 💫 Aether Studio - 2025
+> *Where code meets aesthetics. Where boredom meets greatness.*
